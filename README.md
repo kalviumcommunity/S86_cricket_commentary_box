@@ -1,15 +1,3 @@
-# S86_cricket_commentary_bot
-
-### Project Title: Cricket Commentary Bot
-
-**Project Overview**: A web application where users can generate humorous and exaggerated cricket commentary for their favorite matches. The bot will use a mix of real cricket terms and funny phrases to create entertaining commentary.
-
-**Key Features**:
-- Input match details (teams, players, scores)
-- Generate humorous commentary based on the input
-- Option to choose different commentary styles (e.g., serious, funny, over-the-top)
-- Share the generated commentary on social media
-- Save and revisit past commentaries
 
 **Tech Stack**:
 - Frontend: React, CSS, HTML
