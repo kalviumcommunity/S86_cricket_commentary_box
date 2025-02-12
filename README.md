@@ -48,9 +48,3 @@ app.listen(PORT, () => {
 - Implement user authentication for personalized commentaries.
 - Add more commentary styles and phrases to keep it fresh and entertaining.
 - Create a mobile app version for on-the-go fun.
-
-Happy coding! 😊
-
----
-
-Feel free to customize this further if needed! 🚀
