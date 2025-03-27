@@ -1,5 +1,3 @@
-Here is the updated README file:
-
 ---
 
 **Project Title**: Cricket Commentary Bot
@@ -43,11 +41,22 @@ app.listen(PORT, () => {
 });
 ```
 
+**Tasks Completed**:
+- Created a local Git branch and initialized an Express.js project.
+- Configured MongoDB connection with environment variables.
+- Created and set up `server.js` to handle basic routes.
+- Implemented CRUD operations for managing cricket match data.
+- Developed a `routes.js` file for API endpoints.
+- Created a `models` folder and added MongoDB schema for matches.
+- Used Bruno API client to test CRUD operations.
+- Pushed all changes to GitHub and ensured `.gitignore` includes `node_modules`.
+- Deployed the project using Render.com.
+
 **Future Enhancements**:
 - Integrate with a cricket API for real-time match data.
 - Implement user authentication for personalized commentaries.
 - Add more commentary styles and phrases to keep it fresh and entertaining.
 - Create a mobile app version for on-the-go fun.
 
-
 Render Deployed Link: **https://s86-cricket-commentary-bot.onrender.com**
+

@@ -4,8 +4,16 @@ meta {
   seq: 1
 }
 
-get {
-  url: http://localhost:3000
+post {
+  url: http://localhost:8000/api/matches
   body: json
   auth: none
+}
+
+body:json {
+  {
+    "name": "Match 3",
+    "description": "Pakistan vs Sri Lanka"
+  }
+  
 }
