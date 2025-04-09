@@ -1,0 +1,19 @@
+meta {
+  name: Testing
+  type: http
+  seq: 1
+}
+
+delete {
+  url: http://localhost:8000/api/matches/67e51d282f5cd444a82f9160
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+      "name": "Match",
+      "description": "India vs Pakistan"
+  }
+  
+}
