@@ -1,8 +1,6 @@
-Here is the updated README file:
-
 ---
 
-**Project Title**: Cricket Commentary Bot
+**Project Title**: Cricket Commentary Box
 
 **Project Overview**: A web application where users can generate humorous and exaggerated cricket commentary for their favorite matches. The bot will use a mix of real cricket terms and funny phrases to create entertaining commentary.
 
@@ -26,28 +24,15 @@ Here is the updated README file:
 3. Start the server: `node server.js`
 4. Open your browser and navigate to `http://localhost:3000`
 
-**Server Details**:
-The `server.js` file includes the basic setup for our Express.js server:
-```javascript
-const express = require('express');
-const app = express();
-const PORT = 3000;
+**Tasks Completed**:
+- Created a local Git branch and initialized an Express.js project.
+- Configured MongoDB connection with environment variables.
+- Created and set up `server.js` to handle basic routes.
+- Implemented CRUD operations for managing cricket match data.
+- Developed a `routes.js` file for API endpoints.
+- Created a `models` folder and added MongoDB schema for matches.
+- Used Bruno API client to test CRUD operations.
+- Created a landing page for the Cricket Commentary Box using React and Tailwind CSS.
+- Deployed the project using Render.com.
 
-// Basic /ping route
-app.get('/ping', (req, res) => {
-  res.status(200).send('Hey, This is Mukesh');
-});
-
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
-});
-```
-
-**Future Enhancements**:
-- Integrate with a cricket API for real-time match data.
-- Implement user authentication for personalized commentaries.
-- Add more commentary styles and phrases to keep it fresh and entertaining.
-- Create a mobile app version for on-the-go fun.
-
-
-Render Deployed Link: **https://s86-cricket-commentary-bot.onrender.com**
+**Render Deployed Link**: **https://s86-cricket-commentary-bot.onrender.com**
