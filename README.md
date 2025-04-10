@@ -34,5 +34,7 @@
 - Used Bruno API client to test CRUD operations.
 - Created a landing page for the Cricket Commentary Box using React and Tailwind CSS.
 - Deployed the project using Render.com.
+- Created a component with dummy data that represents one enity.
 
-**Render Deployed Link**: **https://s86-cricket-commentary-bot.onrender.com**
+**Render Backend Deployed Link**: **https://s86-cricket-commentary-bot.onrender.com**
+**Netlify frontend deployed link**: **https://cricket-box.netlify.app/**

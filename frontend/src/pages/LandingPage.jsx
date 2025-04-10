@@ -1,6 +1,8 @@
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import Button from "../components/Button";
+import CommentaryCard from "../components/CommentaryCard";
+
 
 const LandingPage = () => {
   return (
@@ -27,6 +29,14 @@ const LandingPage = () => {
               Generate fun, exaggerated, and hilarious cricket commentary for your favorite matches.
             </p>
             <Button text="Get Started" />
+
+            <div className="mt-10">
+              <CommentaryCard
+                commentator="Mukesh"
+                style="Over-the-Top"
+                text="Boom! That's not just a six, that's a missile launched into the stands!"
+              />
+            </div>
           </main>
           <Footer />
         </div>
