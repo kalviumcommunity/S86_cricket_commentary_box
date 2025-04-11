@@ -36,6 +36,7 @@
 - Deployed the project using Render.com.
 - Created a component with dummy data that represents one enity.
 - Connect your server with the frontend and Render the entites from DB.
+- Create a new page with a Form, to add entities to the server and it should update and list the added entity.
 
 **Render Backend Deployed Link**: **https://s86-cricket-commentary-bot.onrender.com**
 **Netlify frontend deployed link**: **https://cricket-box.netlify.app/**

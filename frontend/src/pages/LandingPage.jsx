@@ -1,23 +1,8 @@
-import { useEffect, useState } from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import Button from "../components/Button";
-import CommentaryCard from "../components/CommentaryCard";
 
 const LandingPage = () => {
-  const [commentaries, setCommentaries] = useState([]);
-
-  useEffect(() => {
-    fetch("http://localhost:8000/api/commentary")
-      .then((res) => res.json())
-      .then((data) => {
-        setCommentaries(data);
-      })
-      .catch((error) => {
-        console.error("Error fetching commentaries:", error);
-      });
-  }, []);
-
   return (
     <div
       className="flex relative flex-col min-h-screen text-white"
@@ -42,17 +27,6 @@ const LandingPage = () => {
               Generate fun, exaggerated, and hilarious cricket commentary for your favorite matches.
             </p>
             <Button text="Get Started" />
-
-            <div className="mt-10 flex flex-col gap-6">
-              {commentaries.map((commentary) => (
-                <CommentaryCard
-                  key={commentary._id}
-                  commentator={commentary.commentator}
-                  style={commentary.style}
-                  text={commentary.text}
-                />
-              ))}
-            </div>
           </main>
           <Footer />
         </div>
