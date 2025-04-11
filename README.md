@@ -35,6 +35,7 @@
 - Created a landing page for the Cricket Commentary Box using React and Tailwind CSS.
 - Deployed the project using Render.com.
 - Created a component with dummy data that represents one enity.
+- Connect your server with the frontend and Render the entites from DB.
 
 **Render Backend Deployed Link**: **https://s86-cricket-commentary-bot.onrender.com**
 **Netlify frontend deployed link**: **https://cricket-box.netlify.app/**
