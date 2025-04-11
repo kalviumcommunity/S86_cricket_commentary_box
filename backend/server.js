@@ -1,27 +1,28 @@
 const express = require('express');
 const mongoose = require('mongoose');
-require('dotenv').config();
+require('dotenv').config({ path: './config/.env' });
 
+const cors = require('cors');
 const app = express();
 const PORT = process.env.PORT || 8000;
 
-app.use(express.json()); // Middleware to parse JSON
+// Middleware
+app.use(cors());
+app.use(express.json());
 
-// ✅ Connect to MongoDB
-mongoose.connect(process.env.DB_URL)
-    .then(() => console.log("✅ MongoDB connected successfully"))
-    .catch(err => console.log("❌ MongoDB connection failed:", err));
+// ✅ MongoDB connection
+mongoose.connect(process.env.DB_URL, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+})
+.then(() => console.log("✅ MongoDB connected successfully"))
+.catch(err => console.log("❌ MongoDB connection failed:", err));
 
-//  Home Route
-app.get('/home', (req, res) => {
-    res.send("Hello, this is Mukesh!");
-});
+// Routes
+const commentaryRoutes = require('./routes/commentaryRoutes');
+app.use('/api/commentary', commentaryRoutes);
 
-//  Import and Use Routes
-const matchRoutes = require('./routes');
-app.use('/api', matchRoutes);
-
-//  Start Server
+// Server start
 app.listen(PORT, () => {
-    console.log(` Server is running at http://localhost:${PORT}`);
+  console.log(`🚀 Server is running at http://localhost:${PORT}`);
 });
