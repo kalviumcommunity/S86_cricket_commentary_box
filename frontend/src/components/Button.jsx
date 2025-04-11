@@ -1,11 +1,13 @@
-const Button = ({ text, onClick }) => {
+// src/components/Button.jsx
+import { Link } from "react-router-dom";
+
+const Button = ({ text, to }) => {
   return (
-    <button
-      onClick={onClick}
-      className="mt-6 px-8 py-3 bg-green-500 text-gray-900 font-semibold rounded-xl shadow-lg hover:bg-green-400 transition-all duration-300 hover:shadow-[0_0_10px_2px_rgba(50,205,50,0.8)]"
-    >
-      {text}
-    </button>
+    <Link to={to}>
+      <button className="bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-6 rounded-full shadow-lg transition">
+        {text}
+      </button>
+    </Link>
   );
 };
 
