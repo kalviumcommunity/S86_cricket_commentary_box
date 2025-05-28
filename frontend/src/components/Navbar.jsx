@@ -1,60 +1,136 @@
-import { useState } from "react";
+// src/components/Navbar.jsx
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
-const Navbar = () => {
+const Navbar = ({ isLandingPage }) => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const navigate = useNavigate();
-  const [showMenu, setShowMenu] = useState(false);
 
-  const toggleMenu = () => {
-    setShowMenu((prev) => !prev);
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      setIsLoggedIn(true);
+    }
+  }, []);
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
+    setIsLoggedIn(false);
+    setIsOpen(false); // close menu on logout
+    navigate("/");
   };
 
   return (
-    <nav className="w-full px-6 py-4 bg-gradient-to-r from-gray-800 to-gray-900 text-white shadow-md border-b border-cyan-500 relative">
-      <div className="max-w-7xl mx-auto flex justify-between items-center">
-        {/* Left Side Options Button */}
-        <div className="relative">
-          <button
-            className="text-cyan-400 text-lg font-bold px-4 py-2 border border-cyan-500 rounded-md hover:bg-cyan-500 hover:text-black transition"
-            onClick={toggleMenu}
-          >
-            Options
-          </button>
-          {showMenu && (
-            <div className="absolute mt-2 bg-gray-800 border border-gray-600 rounded-md shadow-lg z-10">
-              <ul className="flex flex-col text-left">
-                <li
-                  className="py-2 px-4 hover:bg-gray-700 rounded cursor-pointer"
-                  onClick={() => {
-                    navigate("/commentary");
-                    setShowMenu(false);
-                  }}
-                >
-                  Commentary
-                </li>
-              </ul>
-            </div>
-          )}
-        </div>
-
-        {/* Title */}
+    <nav className="w-full px-6 py-4 bg-gradient-to-r from-gray-800 to-gray-900 text-white shadow-md border-b border-cyan-500">
+      <div className="max-w-7xl mx-auto flex justify-between items-center relative">
         <h1
           className="text-2xl font-extrabold tracking-wide text-cyan-400 cursor-pointer"
-          onClick={() => navigate("/")}
+          onClick={() => {
+            setIsOpen(false); // close menu on navigation
+            navigate(isLandingPage ? "/" : "/");
+          }}
         >
           Cricket Commentary Box
         </h1>
 
-        {/* Right Navigation */}
-        <ul className="flex gap-6 text-lg font-medium">
-          <li
-            className="hover:text-green-400 transition cursor-pointer"
-            onClick={() => navigate("/")}
+        {/* Hamburger button visible on small screens */}
+        <div className="lg:hidden relative">
+          <button
+            onClick={() => setIsOpen(!isOpen)}
+            className="text-white text-2xl focus:outline-none"
+            aria-label="Toggle menu"
           >
-            Home
-          </li>
-          <li className="hover:text-green-400 transition cursor-pointer">About</li>
-          <li className="hover:text-green-400 transition cursor-pointer">Contact</li>
+            ☰
+          </button>
+
+          {/* Dropdown menu */}
+          <ul
+            className={`
+              lg:flex lg:gap-6 lg:text-lg lg:font-medium 
+              ${isOpen ? "block bg-gray-800 rounded-md shadow-md p-4 absolute right-0 mt-2 w-40 z-50" : "hidden"}
+            `}
+          >
+            {isLoggedIn ? (
+              <>
+                <li
+                  className="hover:text-green-400 transition cursor-pointer py-2"
+                  onClick={() => {
+                    setIsOpen(false);
+                    navigate("/profile");
+                  }}
+                >
+                  Profile
+                </li>
+                <li
+                  className="hover:text-green-400 transition cursor-pointer py-2"
+                  onClick={() => {
+                    setIsOpen(false);
+                    handleLogout();
+                  }}
+                >
+                  Logout
+                </li>
+              </>
+            ) : (
+              <>
+                <li
+                  className="hover:text-green-400 transition cursor-pointer py-2"
+                  onClick={() => {
+                    setIsOpen(false);
+                    navigate("/login");
+                  }}
+                >
+                  Login
+                </li>
+                <li
+                  className="hover:text-green-400 transition cursor-pointer py-2"
+                  onClick={() => {
+                    setIsOpen(false);
+                    navigate("/signup");
+                  }}
+                >
+                  Signup
+                </li>
+              </>
+            )}
+          </ul>
+        </div>
+
+        {/* Desktop menu */}
+        <ul className="hidden lg:flex gap-6 text-lg font-medium">
+          {isLoggedIn ? (
+            <>
+              <li
+                className="hover:text-green-400 transition cursor-pointer"
+                onClick={() => navigate("/profile")}
+              >
+                Profile
+              </li>
+              <li
+                className="hover:text-green-400 transition cursor-pointer"
+                onClick={handleLogout}
+              >
+                Logout
+              </li>
+            </>
+          ) : (
+            <>
+              <li
+                className="hover:text-green-400 transition cursor-pointer"
+                onClick={() => navigate("/login")}
+              >
+                Login
+              </li>
+              <li
+                className="hover:text-green-400 transition cursor-pointer"
+                onClick={() => navigate("/signup")}
+              >
+                Signup
+              </li>
+            </>
+          )}
         </ul>
       </div>
     </nav>

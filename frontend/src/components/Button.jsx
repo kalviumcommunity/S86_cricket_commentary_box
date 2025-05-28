@@ -1,13 +1,17 @@
 // src/components/Button.jsx
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Button = ({ text, to }) => {
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate(to); // Navigate to the passed "to" route
+  };
+
   return (
-    <Link to={to}>
-      <button className="bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-6 rounded-full shadow-lg transition">
-        {text}
-      </button>
-    </Link>
+    <button onClick={handleClick} className="your-button-styles">
+      {text}
+    </button>
   );
 };
 
