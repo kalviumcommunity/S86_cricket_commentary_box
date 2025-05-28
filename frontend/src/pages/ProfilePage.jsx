@@ -19,7 +19,7 @@ const ProfilePage = () => {
       }
 
       try {
-        const res = await fetch("http://localhost:5000/api/profile", {
+        const res = await fetch("https://s86-cricket-commentary-box.onrender.com/api/profile", {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -50,7 +50,7 @@ const ProfilePage = () => {
     }
 
     try {
-      const res = await fetch("http://localhost:5000/api/profile/bio", {
+      const res = await fetch("https://s86-cricket-commentary-box.onrender.com/api/profile/bio", {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

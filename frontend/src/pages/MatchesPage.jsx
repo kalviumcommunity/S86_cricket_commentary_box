@@ -19,7 +19,7 @@ const MatchesPage = () => {
   useEffect(() => {
     const fetchMatches = async () => {
       try {
-        const res = await axios.get("http://localhost:5000/api/matches");
+        const res = await axios.get("https://s86-cricket-commentary-box.onrender.com/api/matches");
         setMatches(res.data);
       } catch (err) {
         console.error("Failed to fetch matches", err);
@@ -43,7 +43,7 @@ const MatchesPage = () => {
     if (isEditing) {
       try {
         const res = await axios.put(
-          `http://localhost:5000/api/matches/${editingId}`,
+          `https://s86-cricket-commentary-box.onrender.com/api/matches/${editingId}`,
           formData
         );
         setMatches((prev) =>
@@ -54,7 +54,7 @@ const MatchesPage = () => {
       }
     } else {
       try {
-        const res = await axios.post("http://localhost:5000/api/matches", formData);
+        const res = await axios.post("https://s86-cricket-commentary-box.onrender.com/api/matches", formData);
         setMatches((prev) => [...prev, res.data]);
       } catch (err) {
         console.error("Failed to add match", err);
@@ -82,7 +82,7 @@ const MatchesPage = () => {
   const handleDelete = async (id) => {
     if (!window.confirm("Are you sure you want to delete this match?")) return;
     try {
-      await axios.delete(`http://localhost:5000/api/matches/${id}`);
+      await axios.delete(`https://s86-cricket-commentary-box.onrender.com/api/matches/${id}`);
       setMatches((prev) => prev.filter((m) => m._id !== id));
     } catch (err) {
       console.error("Failed to delete match", err);
