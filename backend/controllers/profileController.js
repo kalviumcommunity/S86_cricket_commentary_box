@@ -1,9 +1,8 @@
 const User = require('../models/User');
-
 // Get user profile
 exports.getProfile = async (req, res) => {
   try {
-    const user = await User.findById(req.user.id).select('name email bio');
+    const user = await User.findById(req.user.id).select('username email bio');
     if (!user) return res.status(404).json({ message: 'User not found' });
     res.json(user);
   } catch (err) {
@@ -19,7 +18,7 @@ exports.updateBio = async (req, res) => {
       req.user.id,
       { bio },
       { new: true }
-    ).select('name email bio');
+    ).select('username email bio');
 
     if (!user) return res.status(404).json({ message: 'User not found' });
     res.json(user);

@@ -50,7 +50,7 @@ const ProfilePage = () => {
     }
 
     try {
-      const res = await fetch("https://s86-cricket-commentary-box.onrender.com/api/profile/bio", {
+      const res = await fetch("http://localhost:5000/api/profile/bio", {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -77,7 +77,9 @@ const ProfilePage = () => {
     return (
       <>
         <Navbar />
-        <p className="text-center mt-10 text-gray-500">Loading...</p>
+        <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-900 via-gray-800 to-black">
+          <p className="text-gray-400">Loading...</p>
+        </div>
       </>
     );
 
@@ -85,7 +87,9 @@ const ProfilePage = () => {
     return (
       <>
         <Navbar />
-        <p className="text-center mt-10 text-red-500">{error}</p>
+        <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-900 via-gray-800 to-black">
+          <p className="text-red-500">{error}</p>
+        </div>
       </>
     );
 
@@ -93,63 +97,69 @@ const ProfilePage = () => {
     return (
       <>
         <Navbar />
-        <p className="text-center mt-10 text-gray-500">Could not load profile.</p>
+        <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-900 via-gray-800 to-black">
+          <p className="text-gray-400">Could not load profile.</p>
+        </div>
       </>
     );
 
   return (
     <>
       <Navbar />
-      <div className="max-w-xl mx-auto mt-10 p-6 bg-gray-800 text-white rounded-lg shadow-md">
-        <h2 className="text-3xl font-semibold mb-6 border-b border-gray-700 pb-2">Profile</h2>
+      <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-black py-12 px-4">
+        <div className="max-w-xl mx-auto p-8 bg-gray-800 text-white rounded-2xl shadow-2xl border border-gray-700">
+          <h2 className="text-4xl font-bold mb-6 border-b border-gray-600 pb-3 text-center">
+            Profile
+          </h2>
 
-        <p className="mb-2">
-          <span className="font-semibold">Name:</span> {profile.username}
-        </p>
-        <p className="mb-4">
-          <span className="font-semibold">Email:</span> {profile.email}
-        </p>
+          <p className="mb-2">
+            <span className="font-semibold">Name:</span> {profile.username}
+          </p>
+          <p className="mb-4">
+            <span className="font-semibold">Email:</span> {profile.email}
+          </p>
 
-        <div>
-          <strong className="block mb-2">Bio:</strong>
-          {editing ? (
-            <>
-              <textarea
-                rows="4"
-                value={bio}
-                onChange={(e) => setBio(e.target.value)}
-                className="w-full p-3 rounded-md bg-gray-700 border border-gray-600 text-white focus:outline-none focus:ring-2 focus:ring-green-500"
-              />
-              <div className="mt-3 flex space-x-3">
+          <div>
+            <strong className="block mb-2">Bio:</strong>
+            {editing ? (
+              <>
+                <textarea
+                  rows="4"
+                  value={bio}
+                  onChange={(e) => setBio(e.target.value)}
+                  className="w-full p-3 rounded-lg bg-gray-700 border border-gray-600 text-white focus:outline-none focus:ring-2 focus:ring-green-500"
+                />
+                <div className="mt-4 flex space-x-4">
+                  <button
+                    onClick={handleSave}
+                    className="bg-green-500 hover:bg-green-600 px-4 py-2 rounded-lg text-white font-semibold transition"
+                  >
+                    Save
+                  </button>
+                  <button
+                    onClick={() => {
+                      setEditing(false);
+                      setBio(profile.bio);
+                      setError("");
+                    }}
+                    className="bg-gray-600 hover:bg-gray-700 px-4 py-2 rounded-lg text-white font-semibold transition"
+                  >
+                    Cancel
+                  </button>
+                </div>
+              </>
+            ) : (
+              <>
+                <p className="mb-3">{profile.bio || "No bio set."}</p>
                 <button
-                  onClick={handleSave}
-                  className="bg-green-500 hover:bg-green-600 px-4 py-2 rounded text-white font-semibold transition"
+                  onClick={() => setEditing(true)}
+                  className="bg-green-500 hover:bg-green-600 px-4 py-2 rounded-lg text-white font-semibold transition"
                 >
-                  Save
+                  Edit Bio
                 </button>
-                <button
-                  onClick={() => {
-                    setEditing(false);
-                    setBio(profile.bio);
-                    setError("");
-                  }}
-                  className="bg-gray-600 hover:bg-gray-700 px-4 py-2 rounded text-white font-semibold transition"
-                >
-                  Cancel
-                </button>
-              </div>
-            </>
-          ) : (
-            <>
-              <p className="mb-3">{profile.bio || "No bio set."}</p>
-              <button
-                onClick={() => setEditing(true)}
-                className="bg-green-500 hover:bg-green-600 px-4 py-2 rounded text-white font-semibold transition"
-              >
-                Edit Bio
-              </button>
-            </>
-          )}
+              </>
+            )}
+          </div>
         </div>
       </div>
     </>
